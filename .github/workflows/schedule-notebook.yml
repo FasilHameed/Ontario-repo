@@ -8,22 +8,27 @@ jobs:
   run-notebook:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Step 2: Setup Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # Step 3: Install Dependencies
       - name: Install Dependencies
         run: |
-          pip install nbconvert nbformat requests
+          pip install -r requirements.txt
 
+      # Step 4: Convert Notebook to Python Script
       - name: Convert Notebook to Python
         run: |
-          jupyter nbconvert --to script your_notebook.ipynb
+          jupyter nbconvert --to script Ontario_motive.ipynb
 
+      # Step 5: Run the Converted Python Script
       - name: Run Converted Script
         run: |
-          python your_notebook.py
+          python Ontario_motive.py
