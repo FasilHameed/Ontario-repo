@@ -26,4 +26,4 @@ jobs:
       # Step 4: Execute the Python script
       - name: Run Python Script
         run: |
-          python ontario.py
+          Ontaria_motive.ipynb
