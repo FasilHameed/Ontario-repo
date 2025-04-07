@@ -27,5 +27,5 @@ jobs:
     - name: Run Samsara data sync script
       env:
         api_key_samsara: ${{ secrets.api_key_samsara }}
-        Samsara_json: ${{ secrets.SAMSARA_JSON }}
+        Samsara.json: ${{ secrets.SAMSARA_JSON }}
       run: python Samsara.py
