@@ -1,4 +1,4 @@
-name: Motive API Data 2
+name: Motive API Data 3
 
 on:
   workflow_dispatch:   # Manual trigger
@@ -23,8 +23,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas requests gspread google-auth gspread-dataframe
 
-      - name: Run main.py
+      - name: Run ontario.py
         env:
           SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           MOTIVE_API_KEY: ${{ secrets.MOTIVE_API_KEY }}
-        run: ontario.py
+        run: python ontario.py
