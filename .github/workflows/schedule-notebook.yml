@@ -1,32 +1,38 @@
-name: Schedule Notebook Run
+name: Run Jupyter Notebook with Papermill
 
 on:
   schedule:
-    - cron: "*/5 * * * *"  # Runs every 5 minutes
-  workflow_dispatch:       # Allows manual triggering from the Actions tab
+    - cron: '*/5 * * * *'   # Runs every 5 minutes (UTC)
+  workflow_dispatch:        # Allows manual trigger
+  push:
+    branches:
+      - main
 
 jobs:
   run-notebook:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      # Step 2: Set up Python environment
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install papermill
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install ipykernel jupyter papermill
 
-      # Step 4: Run the Jupyter notebook using Papermill
-      - name: Run Ontaria_motive Notebook
-        run: |
-          papermill Ontaria_motive.ipynb output_notebook.ipynb
+    - name: Set up Jupyter kernel
+      run: |
+        python -m ipykernel install --user --name=python3
+
+    - name: Debug: List available kernels
+      run: jupyter kernelspec list
+
+    - name: Run Papermill notebook
+      run: |
+        papermill Ontaria_motive.ipynb output_notebook.ipynb
