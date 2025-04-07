@@ -27,4 +27,4 @@ jobs:
         env:
           SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           MOTIVE_API_KEY: ${{ secrets.MOTIVE_API_KEY }}
-        run: Ontaria.py
+        run: Ontario.py
