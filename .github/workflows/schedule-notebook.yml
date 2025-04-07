@@ -1,9 +1,8 @@
 name: Motive API Data 0
 
 on:
-  workflow_dispatch:   # Manual trigger
   schedule:
-    - cron: '*/1 * * * *'   # Runs every 5 minutes
+    - cron: '*/1 * * * *'   # Runs every 1 minute
 
 jobs:
   run-script:
