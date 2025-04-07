@@ -19,7 +19,7 @@ SHEET_ID = "1-V3uJtqhQTf-v3PIZEf95CLQ3YooDrVoYGljuk-g_ss"
 
 
 # Load Google Service Account JSON credentials from environment variable
-SERVICE_ACCOUNT_JSON = json.loads(os.environ.get("Samsara_json"))
+SERVICE_ACCOUNT_JSON = json.loads(os.environ.get("Samsara.json", "{}"))
  
 # Headers for API authentication
 HEADERS = {
