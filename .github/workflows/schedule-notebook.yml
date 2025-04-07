@@ -1,22 +1,27 @@
 name: Motive API Data
+
 on:
   schedule:
-    - cron: '0 6,14,22 * * *'   # Runs at 6:00, 14:00, and 22:00 UTC daily
-  workflow_dispatch:            # Allows manual triggering when needed
+    - cron: '0 0,3,6,9,12,15,18 * * *'   # Runs at 00:00, 03:00, 06:00, 09:00, 12:00, 15:00, 18:00 UTC
+  workflow_dispatch:                     # Allows manual triggering when needed
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pandas requests gspread google-auth gspread-dataframe
+
       - name: Run ontario.py
         env:
           SERVICE_ACCOUNT_JSON: ${{ secrets.SERVICE_ACCOUNT_JSON }}
