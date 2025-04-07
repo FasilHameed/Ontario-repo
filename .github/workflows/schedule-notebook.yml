@@ -1,4 +1,4 @@
-name: Motive API Data Pull
+name: Motive API Data
 
 on:
   workflow_dispatch:   # Manual trigger
